@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -18,24 +17,29 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'  # or whatever Node version you used locally
+        node-version: '18'
 
-    - name: Install dependencies
-      run: npm install
+    - name: Install dependencies for Core App
+      run: |
+        cd core-app
+        npm install
 
     - name: Build Core App
       run: |
         cd core-app
-        npm install
         npm run build
+
+    - name: Install dependencies for Remote App
+      run: |
+        cd remote-app
+        npm install
 
     - name: Build Remote App
       run: |
-        cd ../remote-app
-        npm install
+        cd remote-app
         npm run build
 
     - name: Run Tests (Optional)
       run: |
-        cd ../core-app
+        cd core-app
         npm run test -- --coverage
