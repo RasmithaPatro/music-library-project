@@ -5,7 +5,7 @@
   import GroupByToggle from "./GroupByToggle.jsx";
   import AddSongForm from "./AddSongForm.jsx";
   import DeleteSongModal from "./DeleteSongModal.jsx";
-  import "../css/MusicLibrary.css";
+  import "../css/musicLibrary.css";
   import "../css/DeleteSongModal.css";
   import { useNavigate } from "react-router-dom";
   import { filterSongs, sortSongs, groupSongs } from "../utils/songUtils";
