@@ -1,0 +1,191 @@
+/* src/components/ProductList.css */
+
+/* Full screen background with a gradient and music image */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  overflow: auto; /* ✅ Allow scrolling */
+}
+
+/* Hide scrollbar but allow scroll */
+body,
+html,
+.container,
+.logged-in {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar,
+.container::-webkit-scrollbar,
+.logged-in::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('https://media-hosting.imagekit.io/bca7363777e44bc6/eb61912f2701b4905222cb9822e4ddc9.jpg?Expires=1839690899&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BeQS2sMn8~QGFJDC70ya7nY-Qyx0TzAOkVVInBRE~UftHffvDduzcxIGGAjIaA-TcbRUgZbci9Om81w0SMCtMC6qVKYozX~tSmmOY5bRsbMImNrl7zF1GSjWIokkhfGfYz76n0Jjx5cxeJT6Qad2c6tXRuSbIMYlRkr2OswkELVBw2gEgN3Y9XVI2vw1d-nhHkXyIFgvAmOLRQG2A8R03N2solYWy~PT6-eTdYOzLjQjSF8M9bZMXz9qZTICa~B9ngCB~yW534rNEcBig3oOPhn~TkSiK~i5XvYSOz26G3sxBQcy00u~K5HKwgD-6xJLxAWxrapkxMGvxNXwZvhznQ__') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+} */
+
+/* Common styles */
+.container {
+  background-size: cover;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+
+.login-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background: url('https://media-hosting.imagekit.io/bca7363777e44bc6/eb61912f2701b4905222cb9822e4ddc9.jpg?Expires=1839690899&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BeQS2sMn8~QGFJDC70ya7nY-Qyx0TzAOkVVInBRE~UftHffvDduzcxIGGAjIaA-TcbRUgZbci9Om81w0SMCtMC6qVKYozX~tSmmOY5bRsbMImNrl7zF1GSjWIokkhfGfYz76n0Jjx5cxeJT6Qad2c6tXRuSbIMYlRkr2OswkELVBw2gEgN3Y9XVI2vw1d-nhHkXyIFgvAmOLRQG2A8R03N2solYWy~PT6-eTdYOzLjQjSF8M9bZMXz9qZTICa~B9ngCB~yW534rNEcBig3oOPhn~TkSiK~i5XvYSOz26G3sxBQcy00u~K5HKwgD-6xJLxAWxrapkxMGvxNXwZvhznQ__') no-repeat center center fixed;
+  background-size: cover;
+  width: 100vw;        /* 👈 Add this */
+  box-sizing: border-box; /* 👈 Add this */
+}
+
+
+/* Logged-in view — allow scroll and full height */
+.logged-in {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  min-height: 100vh;
+  overflow-y: auto;
+  flex: 1; /* ✅ Add this to grow inside any parent flex layout */
+}
+.container.logged-in {
+  background-attachment: fixed;
+}
+
+
+
+/* Styling for the form container */
+.formContainer {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 320px; /* 👈 Ensures consistent width */
+  text-align: center;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 1s ease-in-out;
+  box-sizing: border-box;
+}
+
+
+/* Heading for the login form */
+.heading {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+/* Styling for the input field */
+.input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 10px rgba(37, 117, 252, 0.5);
+}
+
+/* Styling for the button */
+.button {
+  background-color: #2575fc;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: #6a11cb;
+  transform: scale(1.05);
+}
+
+/* User info container */
+.userInfo {
+  text-align: center;
+  color: #333;
+}
+
+/* Role info section */
+.roleInfo {
+  margin-top: 1rem;
+  color: #555;
+}
+
+.roleInfo p {
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
+}
+
+/* Animation for the login form */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.roleInfo {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+  justify-content: flex-end;
+}
+
+.icon-button {
+
+  color: white;           /* Optional: Ensure the text color is white for visibility */
+  border: none;           /* Optional: Remove border */
+  padding: 10px;          /* Optional: Add padding for better appearance */
+  border-radius: 5px;     /* Optional: Add rounded corners */
+  cursor: pointer;        /* Optional: Change cursor on hover */
+}
+
+.icon-button:hover {
+  background-color: darkblue; /* Darker blue when hovering */
+}
+
+
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}

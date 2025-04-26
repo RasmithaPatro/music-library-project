@@ -1,0 +1,2 @@
+# Microfrontends demo application
+
