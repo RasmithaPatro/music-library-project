@@ -1,86 +1,108 @@
-# Microfrontends demo application
+# Microfrontends Demo Application
 
 ## How to Install and Run the Project
 
-1. Clone the Repository
-The first step is to clone the repository to your local machine. This will create a local copy of the project.
+To set up and run the project:
 
-Repository URL: https://github.com/RasmithaPatro/music-library-project.git
+Clone the repository from GitHub:
 
 git clone https://github.com/RasmithaPatro/music-library-project.git
+
+Navigate into the project directory:
+
 cd music-library-project
 
+This project has two parts:
 
-2. Install Dependencies
-Once the repository is cloned, you need to install the dependencies for both the Remote App and the Host App.
+mf-remote-app (Remote Application)
 
-Remote App Directory: mf-remote-app
+mf-core-app (Host Application)
 
-Host App Directory: mf-core-app
+### Step 1: Build and start the Remote App:
 
-Navigate to the respective directories and run the following commands to install dependencies.
-
-Command for Remote App:
+Navigate to the remote app folder:
 cd mf-remote-app
+
+Install the dependencies:
 npm install
 
-Command for Host App:
-cd mf-core-app
-npm install
-
-3. Build and Start the Remote App
-After installing the dependencies for the Remote App, you need to build and start it. The Remote App will be responsible for providing the music library components.
-
-Remote App Folder: mf-remote-app
-
-Entry Point for Remote App:  MusicApp.jsx 
-
-Command to Build and Start the Remote App:
-
-cd mf-remote-app
+Build the project:
 npm run build
+
+Start the Remote App server:
 npm start
 
-4. Start the Host App
-Once the Remote App is running, the next step is to start the Host App. The Host App consumes the components provided by the Remote App.
+###  Step 2: Start the Host App:
 
-Host App Folder: mf-core-app
+In a new terminal, navigate to the host app folder:
+cd mf-core-app
 
-Entry Point for Host App: App.jsx 
+Install the dependencies:
+npm install
 
-Command to Start the Host App:
-
-cd mf-remote-app
+Start the Host App server:
 npm start
 
-The Host App will now be up and running, connecting to the Remote App and displaying the components.
+Once both apps are running, open the browser and visit:
 
-4. Access the Application
-
-Once both applications are running, open your web browser and go to:
-http://localhost:3000
-You will be able to view and interact with the Microfrontends demo project.
+http://localhost:3000 — The Host App will consume and display components from the Remote App.
 
 ## Key Design Decisions and Trade-offs
 
-Microfrontend Architecture using Module Federation
-The project follows a Microfrontend architecture by splitting the application into a Remote App (mf-remote-app) and a Host App (mf-host-app). This approach allows independent development, deployment, and scaling of different parts of the application.
+### Microfrontend Architecture:
+The project uses Webpack's Module Federation to implement microfrontends. The Host App dynamically loads modules from the Remote App at runtime, enabling independent development and deployment of different app sections.
 
-Webpack 5 Module Federation Plugin
-Webpack 5’s Module Federation plugin is used to dynamically load components from the Remote App into the Host App at runtime. This design eliminates the need for tightly coupling codebases and makes the system flexible for future expansions.
+### Independent Builds:
+Each application (mf-remote-app and mf-core-app) has its own Webpack config, package.json, and build pipeline. This separation enhances scalability and maintainability.
 
-Code Splitting and Lazy Loading
+### Code Splitting and Lazy Loading
 Key components from the Remote App are loaded lazily in the Host App. This reduces the initial load time of the application and improves performance, especially for users on slower networks.
 
-Separate Dependency Management
-Both the Host and Remote apps manage their own dependencies. Critical shared libraries like react and react-dom are shared using Module Federation’s shared module configuration to avoid duplication and potential version conflicts.
+### Shared Dependencies:
+React and ReactDOM are shared across both apps to avoid loading multiple versions, minimizing bundle size and preventing version conflicts.
 
-Simple CSS Management
-CSS is managed separately within each app’s local folder (src/css). This avoids global CSS conflicts across Host and Remote apps but introduces slight duplication, which was considered acceptable for the sake of simplicity in this demo.
+### Trade-offs:
 
-Trade-Off: Increased Setup Complexity
-While Module Federation brings flexibility, it also introduces some setup complexity — such as configuring Webpack carefully in both Host and Remote apps, handling shared modules properly, and coordinating builds.
+Initial setup complexity increases slightly, as both applications must be built and started separately.
 
-Trade-Off: Development Server Coordination
-For development purposes, both apps need to run simultaneously (Remote App first, then Host App). Automating this could be improved in the future by using tools like concurrently or Docker Compose.
+Care must be taken to maintain compatibility when upgrading shared libraries across remote and host apps.
 
+During local development, both apps must run simultaneously, which can consume more resources.
+
+## Instructions for Running the Tests and Viewing Test Coverage
+
+## Testing the Remote App (mf-remote-app):
+
+Navigate to the mf-remote-app directory:
+
+cd mf-remote-app
+
+Run the test suite:
+
+npm test
+
+To view test coverage:
+
+Run npm test -- --coverage
+
+After running coverage, a detailed HTML report will be generated inside the coverage folder:
+
+Open coverage/lcov-report/index.html in a browser to view the report.
+
+## Testing the Host App (mf-core-app):
+
+Navigate to the mf-core-app directory:
+
+cd mf-core-app
+
+Run the test suite:
+
+npm test
+
+To view test coverage:
+
+Run npm test -- --coverage
+
+Similar to the Remote App, a coverage folder will be created inside mf-core-app:
+
+Open coverage/lcov-report/index.html in a browser to view the Host App's detailed coverage report.
